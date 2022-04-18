@@ -17,13 +17,23 @@ const Login = () => {
                     <Form.Label style={{ color: "blue" }}>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" required />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
+
+                <Button className='w-50 p-2 mt-2 mx-auto' variant="primary" type="submit">
+                    Login
                 </Button>
             </Form>
+
+            <div className='d-flex align-items-center justify-content-center' >
+
+                <p className='mt-2 px-2 text-bold'>Or</p>
+
+            </div>
+            <div className='d-flex align-items-center justify-content-center'>
+                <Button variant="outline-primary" type="submit">
+                    <img className='text-center px-1' src="./images/social.png" alt="" />
+                    Google Sign in
+                </Button>
+            </div>
         </div>
     );
 };
