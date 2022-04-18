@@ -3,6 +3,7 @@ import { Container, Nav, Navbar, NavDropdown, NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+
     return (
         <div>
 
@@ -18,7 +19,9 @@ const Header = () => {
                             <Nav.Link as={Link} to={'/'} >Home
 
                             </Nav.Link>
-                            <Nav.Link href='/#services'>services </Nav.Link>
+                            <Nav.Link style={{ color: '#b8b6b6' }} href='/#services'>services
+
+                            </Nav.Link>
                             <Nav.Link as={Link} to={'/blogs'} >
                                 Blogs
                             </Nav.Link>
