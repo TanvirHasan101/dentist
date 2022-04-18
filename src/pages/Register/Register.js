@@ -1,9 +1,20 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Sociallogin from '../Home/SocialLogin/Sociallogin';
+import auth from '../../firebase.init';
 
 const Register = () => {
+
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+
     const nameRef = useRef('')
     const emailRef = useRef('');
     const passwordRef = useRef('');
@@ -14,6 +25,7 @@ const Register = () => {
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
+        createUserWithEmailAndPassword(email, password);
     }
 
 
