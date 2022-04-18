@@ -1,0 +1,23 @@
+[
+    {
+        "_id": "625d23c9cd4940d3d532bce3",
+        "name": "Dental Implants",
+        "img": "/images/services/service1.jpg",
+        "price": 305,
+        "about": "The replacement of the lost tooth is a cosmetic issue. It is not a developed anatomical problem, it is the consequence of disease, and to correct this cosmetic problem prosthetics have to be provided."
+    },
+    {
+        "_id": "625d23c9d69714f87bf01593",
+        "name": "Teeth Whitening",
+        "img": "/images/services/service2.jpg",
+        "price": 550,
+        "about": "This is a surface corrective treatment which is performed to improve the appearance of the patient’s smile by brightening and lightening teeth shade and color."
+    },
+    {
+        "_id": "625d23c9a91e054dc0a9815f",
+        "name": "Braces",
+        "img": "/images/services/service3.jpg",
+        "price": 526,
+        "about": "Braces are dental tools that help correct problems with your teeth, like crowding, crooked teeth, or teeth that are out of alignment. Many people get braces when they’re teenagers, but adults get them too. As you wear them, braces slowly straighten and align your teeth so you have a normal bite. Some people get braces to adjust their smile."
+    }
+]
