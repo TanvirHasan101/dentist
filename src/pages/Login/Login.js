@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Sociallogin from '../Home/SocialLogin/Sociallogin';
 
 const Login = () => {
     return (
@@ -18,22 +20,18 @@ const Login = () => {
                     <Form.Control type="password" placeholder="Password" required />
                 </Form.Group>
 
+
+                {/* Route to register page & forget password  */}
+
+                <p>New to 24-Dentist? Please <Link className='text-decoration-none' to={'/register'}>Register</Link> </p>
+
                 <Button className='w-50 p-2 mt-2 mx-auto' variant="primary" type="submit">
                     Login
                 </Button>
             </Form>
 
-            <div className='d-flex align-items-center justify-content-center' >
 
-                <p className='mt-2 px-2 text-bold'>Or</p>
-
-            </div>
-            <div className='d-flex align-items-center justify-content-center'>
-                <Button variant="outline-primary" type="submit">
-                    <img className='text-center px-1' src="./images/social.png" alt="" />
-                    Google Sign in
-                </Button>
-            </div>
+            <Sociallogin></Sociallogin>
         </div>
     );
 };

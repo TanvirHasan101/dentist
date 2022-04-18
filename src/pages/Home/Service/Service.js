@@ -1,8 +1,15 @@
 import React from 'react';
 import { Button, Card, CardGroup, Col } from 'react-bootstrap';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const Service = ({ service }) => {
     const { name, img, price, about } = service
+    const Navigate = useNavigate();
+
+    const navigateToCheckOut = () => {
+        Navigate('/checkout')
+
+    }
     return (
         <Col className='mb-5' >
             <CardGroup style={{ height: "600px" }}>
@@ -15,7 +22,7 @@ const Service = ({ service }) => {
                             {about}
                         </Card.Text>
                     </Card.Body>
-                    <Button variant="primary">Check In</Button>{' '}
+                    <Button onClick={navigateToCheckOut} variant="primary">Check In</Button>{' '}
                 </Card>
             </CardGroup>
         </Col>
