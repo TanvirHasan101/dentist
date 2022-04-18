@@ -1,17 +1,35 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import Sociallogin from '../Home/SocialLogin/Sociallogin';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Sociallogin from '../SocialLogin/Sociallogin';
 
 const Login = () => {
     const emailRef = useRef('');
-    const passwordRef = useRef('')
+    const passwordRef = useRef('');
+    const navigate = useNavigate();
+    let location = useLocation();
 
+    let from = location.state?.from?.pathname || "/";
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    if (user) {
+        navigate(from, { replace: true });
+    }
     const handelSubmit = event => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        console.log(email, password)
+        signInWithEmailAndPassword(email, password)
+
 
     }
     return (
@@ -35,13 +53,15 @@ const Login = () => {
 
                 <p>New to 24-Dentist? Please <Link className='text-decoration-none' to={'/register'}>Register</Link> </p>
 
-                <Button className='w-50 p-2 mt-2 mx-auto' variant="primary" type="submit">
+                <Button className='w-50 p-2 my-2 mx-auto' variant="primary" type="submit">
                     Login
                 </Button>
+
+                <Sociallogin></Sociallogin>
             </Form>
 
 
-            <Sociallogin></Sociallogin>
+
         </div>
     );
 };

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import Sociallogin from '../Home/SocialLogin/Sociallogin';
+import Sociallogin from '../SocialLogin/Sociallogin';
 import auth from '../../firebase.init';
 
 const Register = () => {
@@ -54,12 +54,13 @@ const Register = () => {
                 </Form.Group>
                 <p>Already have an account? Please <Link className='text-decoration-none' to={'/login'}>Login</Link> </p>
 
-                <Button className='w-50 p-2 mt-2 mx-auto' variant="primary" type="submit">
+                <Button className='w-50 p-2 my-2 mx-auto' variant="primary" type="submit">
                     Sign Up
                 </Button>
+                <Sociallogin> </Sociallogin>
             </Form>
 
-            <Sociallogin> </Sociallogin>
+
         </div>
     );
 };
