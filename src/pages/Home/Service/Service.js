@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, CardGroup, Col } from 'react-bootstrap';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Service = ({ service }) => {
     const { name, img, price, about } = service
