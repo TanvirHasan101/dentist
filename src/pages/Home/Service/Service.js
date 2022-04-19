@@ -22,7 +22,7 @@ const Service = ({ service }) => {
                             {about}
                         </Card.Text>
                     </Card.Body>
-                    <Button onClick={navigateToCheckOut} variant="primary">Check In</Button>{' '}
+                    <Button onClick={navigateToCheckOut} variant="primary">Book An Appointment</Button>{' '}
                 </Card>
             </CardGroup>
         </Col>
