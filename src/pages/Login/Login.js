@@ -4,7 +4,10 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 import Sociallogin from '../SocialLogin/Sociallogin';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -26,15 +29,6 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
 
-    if (user) {
-        navigate(from, { replace: true });
-    }
-
-    if (error) {
-
-        errorElement = <p className='text-danger'>Error: {error?.message}</p>
-
-    }
     const handelSubmit = event => {
         event.preventDefault();
         const email = emailRef.current.value;
@@ -53,8 +47,29 @@ const Login = () => {
 
     const resetPassword = async () => {
         const email = emailRef.current.value;
-        await sendPasswordResetEmail(email);
-        alert('Sent email');
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        }
+        else {
+            toast('Please enter your Email Address')
+        }
+
+    }
+
+    // loading navigate and error handel 
+
+    if (loading || sending) {
+        return <Loading></Loading>;
+    }
+    if (user) {
+        navigate(from, { replace: true });
+    }
+
+    if (error) {
+
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
+
     }
 
 
@@ -78,7 +93,7 @@ const Login = () => {
                 {/* Route to register page & forget password  */}
 
                 <p>New to 24-Dentist? Please <Link className='text-decoration-none' to={'/register'}>Register</Link> </p>
-                <p>Forget Password? <Link to={'/login'} className='text-decoration-none' onClick={resetPassword} variant="link">Reset Password</Link></p>
+                <p>Forget Password? <Button className='text-decoration-none btn btn-link' onClick={resetPassword} variant="link">Reset Password</Button></p>
                 {errorElement}
 
                 <Button className='w-50 p-2 my-3 d-block mx-auto' variant="primary" type="submit">
@@ -87,6 +102,7 @@ const Login = () => {
 
                 <Sociallogin></Sociallogin>
             </Form>
+            <ToastContainer />
 
 
 
