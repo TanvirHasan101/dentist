@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -11,18 +11,29 @@ const Login = () => {
     const passwordRef = useRef('');
     const navigate = useNavigate();
     let location = useLocation();
-
+    let errorElement = '';
     let from = location.state?.from?.pathname || "/";
 
+
+    // sign in with email & password
+
     const [
+
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+
     if (user) {
         navigate(from, { replace: true });
+    }
+
+    if (error) {
+
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
+
     }
     const handelSubmit = event => {
         event.preventDefault();
@@ -32,6 +43,21 @@ const Login = () => {
 
 
     }
+
+
+    // forget password 
+    const [
+        sendPasswordResetEmail,
+        sending
+    ] = useSendPasswordResetEmail(auth);
+
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        await sendPasswordResetEmail(email);
+        alert('Sent email');
+    }
+
+
     return (
         <div>
 
@@ -52,8 +78,10 @@ const Login = () => {
                 {/* Route to register page & forget password  */}
 
                 <p>New to 24-Dentist? Please <Link className='text-decoration-none' to={'/register'}>Register</Link> </p>
+                <p>Forget Password? <Link to={'/login'} className='text-decoration-none' onClick={resetPassword} variant="link">Reset Password</Link></p>
+                {errorElement}
 
-                <Button className='w-50 p-2 my-2 mx-auto' variant="primary" type="submit">
+                <Button className='w-50 p-2 my-3 d-block mx-auto' variant="primary" type="submit">
                     Login
                 </Button>
 

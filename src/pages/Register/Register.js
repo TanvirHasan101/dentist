@@ -12,8 +12,13 @@ const Register = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
+    let errorElement = '';
+
+    if (error) {
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
+    }
 
     const nameRef = useRef('')
     const emailRef = useRef('');
@@ -37,29 +42,34 @@ const Register = () => {
 
             <h2 style={{ fontSize: "50px", color: "blue" }} className='text-center m-5'>Sign Up</h2>
 
-            <Form onSubmit={handelRegister} className='container mx-auto my-5 w-50'>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label style={{ color: "blue" }}  >Name</Form.Label>
-                    <Form.Control ref={nameRef} type="text" placeholder="Enter Your Full Name" required />
-                </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label style={{ color: "blue" }}  >Email address</Form.Label>
-                    <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
-                </Form.Group>
+            <div className='container mx-auto my-5 w-50'>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label style={{ color: "blue" }}>Password</Form.Label>
-                    <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
-                </Form.Group>
-                <p>Already have an account? Please <Link className='text-decoration-none' to={'/login'}>Login</Link> </p>
+                <Form onSubmit={handelRegister}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label style={{ color: "blue" }}  >Name</Form.Label>
+                        <Form.Control ref={nameRef} type="text" placeholder="Enter Your Full Name" required />
+                    </Form.Group>
 
-                <Button className='w-50 p-2 my-2 mx-auto' variant="primary" type="submit">
-                    Sign Up
-                </Button>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label style={{ color: "blue" }}  >Email address</Form.Label>
+                        <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label style={{ color: "blue" }}>Password</Form.Label>
+                        <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
+                    </Form.Group>
+                    <p>Already have an account? Please <Link className='text-decoration-none' to={'/login'}>Login</Link> </p>
+                    {errorElement}
+                    <Button className='w-50 p-2 my-3 d-block mx-auto' variant="primary" type="submit">
+                        Sign Up
+                    </Button>
+
+                </Form>
                 <Sociallogin> </Sociallogin>
-            </Form>
 
+            </div>
 
         </div>
     );
