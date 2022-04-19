@@ -92,7 +92,7 @@ const Login = () => {
 
                 {/* Route to register page & forget password  */}
 
-                <p>New to 24-Dentist? Please <Link className='text-decoration-none' to={'/register'}>Register</Link> </p>
+                <p>New to 24-Dentist?<Link className='text-decoration-none' to={'/register'}> Please Register</Link> </p>
                 <p>Forget Password? <Button className='text-decoration-none btn btn-link' onClick={resetPassword} variant="link">Reset Password</Button></p>
                 {errorElement}
 
